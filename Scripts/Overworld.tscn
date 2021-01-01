@@ -1,0 +1,223 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scripts/Overworld.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Minion.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/character.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Axe.gd" type="Script" id=4]
+[ext_resource path="res://Assets/ScriptBox/Save.png" type="Texture" id=5]
+[ext_resource path="res://Assets/ScriptBox/Play.png" type="Texture" id=6]
+[ext_resource path="res://Assets/ScriptBox/Load.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/ScriptBox.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Tilemaps/demo_tiles.tres" type="TileSet" id=9]
+[ext_resource path="res://Scripts/Spade.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Plant.gd" type="Script" id=11]
+
+[sub_resource type="Animation" id=5]
+resource_name = "bump"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 1.2 ), Vector2( 1.2, 0.8 ), Vector2( 0.95, 1.05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "east"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 6 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "north"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 10 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "south"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 3, 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "west"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 6 ]
+}
+
+[node name="Overworld" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="InteractiveTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -327687, 4, 1, -327686, 4, 1, -327685, 4, 1, -327684, 4, 1, -327683, 4, 1, -327682, 4, 1, -327681, 4, 1, -393216, 4, 1, -393215, 4, 1, -393214, 4, 1, -393213, 4, 1, -393212, 4, 1, -393211, 4, 1, -393210, 4, 1, -393209, 4, 1, -262151, 4, 1, -327673, 4, 1, -196615, 4, 1, -262137, 4, 1, -131079, 4, 1, -196601, 4, 1, -65543, 4, 1, -65541, 5, 1, -131065, 4, 1, -7, 4, 1, -5, 5, 1, -65536, 4, 0, -65529, 4, 1, 65529, 4, 1, 65531, 5, 65537, 1, 4, 0, 7, 4, 1, 131065, 4, 1, 65543, 4, 1, 196601, 4, 1, 131079, 4, 1, 262137, 4, 1, 196615, 4, 1, 327673, 4, 1, 327674, 4, 1, 327675, 4, 1, 327676, 4, 1, 327677, 4, 1, 327678, 4, 1, 327679, 4, 1, 262144, 4, 1, 262145, 4, 1, 262146, 4, 1, 262147, 4, 1, 262148, 4, 1, 262149, 4, 1, 262150, 4, 1, 262151, 4, 1 )
+
+[node name="Axe" type="Node2D" parent="InteractiveTiles"]
+position = Vector2( -72, 8 )
+script = ExtResource( 4 )
+
+[node name="Plant" type="Node2D" parent="InteractiveTiles"]
+position = Vector2( -72, -8 )
+script = ExtResource( 11 )
+
+[node name="Spade" type="Node2D" parent="InteractiveTiles"]
+position = Vector2( -72, -24 )
+script = ExtResource( 10 )
+
+[node name="BackgroundTiles" type="TileMap" parent="."]
+show_behind_parent = true
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -327687, 0, 0, -327686, 0, 0, -327685, 0, 0, -327684, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -393213, 0, 0, -393212, 0, 0, -393211, 0, 0, -393210, 0, 0, -393209, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -196615, 0, 0, -196614, 0, 0, -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -131079, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -65543, 0, 0, -65542, 0, 0, -65541, 0, 0, -65540, 8, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -7, 0, 0, -6, 0, 0, -5, 0, 0, -4, 7, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 6, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 196601, 0, 0, 196602, 0, 0, 196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 262137, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0 )
+
+[node name="Minion" type="Node2D" parent="."]
+position = Vector2( 8, 8 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Minion"]
+anims/bump = SubResource( 5 )
+anims/east = SubResource( 2 )
+anims/north = SubResource( 1 )
+anims/south = SubResource( 3 )
+anims/west = SubResource( 4 )
+
+[node name="Position2D" type="Position2D" parent="Minion"]
+
+[node name="Sprite" type="Sprite" parent="Minion"]
+position = Vector2( -0.5, -5.5 )
+scale = Vector2( 0.975, 1.025 )
+texture = ExtResource( 3 )
+vframes = 3
+hframes = 4
+frame = 4
+
+[node name="Camera2D" type="Camera2D" parent="Minion"]
+current = true
+zoom = Vector2( 0.2, 0.2 )
+
+[node name="ScriptBox" type="TextEdit" parent="Minion/Camera2D"]
+margin_left = -70.2092
+margin_top = 15.0
+margin_right = 429.791
+margin_bottom = 154.0
+rect_scale = Vector2( 0.3, 0.3 )
+text = "move n 1"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Run" type="TextureButton" parent="Minion/Camera2D/ScriptBox"]
+margin_left = 489.0
+margin_top = 2.0
+margin_right = 501.0
+margin_bottom = 13.0
+texture_normal = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="TextureButton" parent="Minion/Camera2D/ScriptBox"]
+margin_left = 490.0
+margin_top = 21.0
+margin_right = 500.0
+margin_bottom = 31.0
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="TextureButton" parent="Minion/Camera2D/ScriptBox"]
+margin_left = 490.148
+margin_top = 30.7999
+margin_right = 500.148
+margin_bottom = 40.7999
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveName" type="LineEdit" parent="Minion/Camera2D/ScriptBox"]
+visible = false
+margin_left = 346.0
+margin_top = 91.0
+margin_right = 494.0
+margin_bottom = 115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadName" type="LineEdit" parent="Minion/Camera2D/ScriptBox"]
+visible = false
+margin_left = 346.0
+margin_top = 62.0
+margin_right = 494.0
+margin_bottom = 86.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Minion"]
+
+[node name="AlwaysOnTop" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -131077, 5, 0 )
+[connection signal="ScriptRunning" from="Minion/Camera2D/ScriptBox" to="Minion" method="_on_TextEdit_ScriptRunning"]
+[connection signal="ScriptRunning" from="Minion/Camera2D/ScriptBox" to="Minion" method="_on_ScriptBox_ScriptRunning"]
+[connection signal="pressed" from="Minion/Camera2D/ScriptBox/Run" to="Minion/Camera2D/ScriptBox" method="_on_Run_pressed"]
+[connection signal="pressed" from="Minion/Camera2D/ScriptBox/Save" to="Minion/Camera2D/ScriptBox" method="_on_Save_pressed"]
+[connection signal="pressed" from="Minion/Camera2D/ScriptBox/Load" to="Minion/Camera2D/ScriptBox" method="_on_Load_pressed"]
+[connection signal="text_entered" from="Minion/Camera2D/ScriptBox/SaveName" to="Minion/Camera2D/ScriptBox" method="_on_SaveName_text_entered"]
+[connection signal="text_entered" from="Minion/Camera2D/ScriptBox/LoadName" to="Minion/Camera2D/ScriptBox" method="_on_LoadName_text_entered"]
+[connection signal="tween_completed" from="Minion/Tween" to="Minion" method="_on_Tween_tween_completed"]
