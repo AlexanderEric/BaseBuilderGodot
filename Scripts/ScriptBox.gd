@@ -16,7 +16,14 @@ signal ScriptStop
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	get_parent().add_to_group("ScriptBoxActive")
+	var minionSelected = get_parent().get_parent()
+	$Run.connect("pressed",self,"_on_Run_pressed")
+	$Save.connect("pressed",self,"_on_Save_pressed")
+	$Load.connect("pressed",self,"_on_Load_pressed")
+	$LoadName.connect("text_entered",self,"_on_LoadName_text_entered")
+	$SaveName.connect("text_entered",self,"_on_SaveName_pressed")
+	connect("ScriptRunning",minionSelected,"_on_ScriptBox_ScriptRunning")
 	pass # Replace with function body.
 
 

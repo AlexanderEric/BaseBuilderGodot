@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var sprite = $Sprite
-onready var overworld = get_parent()
+onready var overworld = get_parent().get_parent()
 onready var tween = $Tween
 
 export var down_frame = 0
@@ -14,13 +14,15 @@ var directions = {"south":Vector2(0,1),"north":Vector2(0,-1),"east":Vector2(1,0)
 var tileSize = 16
 var minionType = "lumberjack"
 var heldTool = ""
+var myname = ""
 #declaring commands
 var commandListMove = ["move","walk","run","go"]
 var commandDirections = [["north","n","u",'up'],["east","right","e","r"],
 				["south","down","s","d"],["west","left","w","l"]]
 var commandListGrab = ["grab","pick up","pickup","take"]
 var commandListInv = ["inv","inventory","held"]
-var commandListAll = [commandListMove,commandListGrab,commandListInv]
+var commandListGetName = ["getname","myname","who"]
+var commandListAll = [commandListMove,commandListGrab,commandListInv,commandListGetName]
 
 var commandRunning = false
 # Declare member variables here. Examples:
@@ -90,6 +92,9 @@ func _commands(commands): #ex commands = "walk n 1" "interact s" "woodcut s" etc
 					commandFinished = true
 			elif command == "inv":
 				print("Minion is now holding ", heldTool)
+				commandFinished = true
+			elif command == "getname":
+				print(getName())
 				commandFinished = true
 				
 	if commandFinished == true:
@@ -162,3 +167,13 @@ func _on_Tween_tween_completed(object, key):
 		emit_signal("movementFinished")
 	else:
 		emit_signal("movementFinished")
+
+func setName(newName):
+	myname = newName
+	set_name(newName)
+func getName():
+	return myname
+
+
+	
+	
