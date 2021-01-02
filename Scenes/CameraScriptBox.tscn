@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/ScriptBox.tscn" type="PackedScene" id=2]
+
+[node name="Camera2D" type="Camera2D"]
+current = true
+zoom = Vector2( 0.2, 0.2 )
+
+[node name="ScriptBox" parent="." instance=ExtResource( 2 )]

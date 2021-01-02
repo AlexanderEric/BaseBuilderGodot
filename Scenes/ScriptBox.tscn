@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/ScriptBox.gd" type="Script" id=1]
+[ext_resource path="res://Assets/ScriptBox/Save.png" type="Texture" id=2]
+[ext_resource path="res://Assets/ScriptBox/Play.png" type="Texture" id=3]
+[ext_resource path="res://Assets/ScriptBox/Load.png" type="Texture" id=4]
+
+[node name="ScriptBox" type="TextEdit"]
+margin_left = -70.2092
+margin_top = 15.0
+margin_right = 429.791
+margin_bottom = 154.0
+rect_scale = Vector2( 0.3, 0.3 )
+text = "move w 2
+move s 1
+grab w"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Run" type="TextureButton" parent="."]
+margin_left = 489.0
+margin_top = 2.0
+margin_right = 501.0
+margin_bottom = 13.0
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="TextureButton" parent="."]
+margin_left = 490.0
+margin_top = 21.0
+margin_right = 500.0
+margin_bottom = 31.0
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="TextureButton" parent="."]
+margin_left = 490.148
+margin_top = 30.7999
+margin_right = 500.148
+margin_bottom = 40.7999
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveName" type="LineEdit" parent="."]
+visible = false
+margin_left = 346.0
+margin_top = 91.0
+margin_right = 494.0
+margin_bottom = 115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadName" type="LineEdit" parent="."]
+visible = false
+margin_left = 346.0
+margin_top = 62.0
+margin_right = 494.0
+margin_bottom = 86.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]
+[connection signal="text_entered" from="SaveName" to="." method="_on_SaveName_text_entered"]
+[connection signal="text_entered" from="LoadName" to="." method="_on_LoadName_text_entered"]
